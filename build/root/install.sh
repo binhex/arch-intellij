@@ -66,9 +66,9 @@ cat <<'EOF' > /tmp/startcmd_heredoc
 # check if recent projects directory config file exists, if it doesnt we assume
 # intellij hasn't been run yet and thus set default location for future projects to
 # external volume mapping.
-if [ ! -f /config/intellij/config/options/recentProjectDirectories.xml ]; then
+if [ ! -f /config/intellij/config/options/recentProjects.xml ]; then
 	mkdir -p /config/intellij/config/options
-	cp /home/nobody/recentProjectDirectories.xml /config/intellij/config/options/recentProjectDirectories.xml
+	cp /home/nobody/recentProjects.xml /config/intellij/config/options/recentProjects.xml
 fi
 
 # run intellij
