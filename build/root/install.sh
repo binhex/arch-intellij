@@ -19,12 +19,23 @@ mv /tmp/scripts-master/shell/arch/docker/*.sh /root/
 ####
 
 # define pacman packages
-pacman_packages="git tk"
+pacman_packages="git tk kotlin groovy"
 
 # install compiled packages using pacman
 if [[ ! -z "${pacman_packages}" ]]; then
 	pacman -S --needed $pacman_packages --noconfirm
 fi
+
+# aur packages
+####
+
+# NOTE aur package first to force install of oracle java (openjdk not supported)
+
+# define aur packages
+aur_packages="jdk8"
+
+# call aur install script (arch user repo)
+source /root/aur.sh
 
 # aor packages
 ####
@@ -34,15 +45,6 @@ aor_packages="intellij-idea-community-edition"
 
 # call aor script (arch official repo)
 source /root/aor.sh
-
-# aur packages
-####
-
-# define aur packages
-aur_packages=""
-
-# call aur install script (arch user repo)
-source /root/aur.sh
 
 # config intellij
 ####
@@ -70,7 +72,7 @@ if [ ! -f /config/intellij/config/options/recentProjectDirectories.xml ]; then
 fi
 
 # run intellij
-/usr/bin/idea
+/usr/bin/idea.sh
 EOF
 
 # replace startcmd placeholder string with contents of file (here doc)
@@ -92,7 +94,7 @@ cp /home/nobody/favicon.ico /usr/share/novnc/
 cat <<'EOF' > /tmp/menu_heredoc
     <item label="IntelliJ">
     <action name="Execute">
-      <command>idea</command>
+      <command>/usr/bin/idea.sh</command>
       <startupnotify>
         <enabled>yes</enabled>
       </startupnotify>
