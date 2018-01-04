@@ -1,6 +1,6 @@
 **Application**
 
-[IntelliJ IDEA](https://www.jetbrains.com/idea//)
+[IntelliJ IDEA](https://www.jetbrains.com/idea/)
 
 **Description**
 
