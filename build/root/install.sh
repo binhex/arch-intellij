@@ -19,7 +19,7 @@ mv /tmp/scripts-master/shell/arch/docker/*.sh /root/
 ####
 
 # define pacman packages
-pacman_packages="git tk groovy jdk8-openjdk"
+pacman_packages="git tk groovy jdk8-openjdk scala kotlin groovy"
 
 # install compiled packages using pacman
 if [[ ! -z "${pacman_packages}" ]]; then
