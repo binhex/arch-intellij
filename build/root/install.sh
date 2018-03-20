@@ -19,7 +19,7 @@ mv /tmp/scripts-master/shell/arch/docker/*.sh /root/
 ####
 
 # define pacman packages
-pacman_packages="git tk groovy jdk8-openjdk scala kotlin groovy"
+pacman_packages="git tk groovy scala kotlin groovy"
 
 # install compiled packages using pacman
 if [[ ! -z "${pacman_packages}" ]]; then
@@ -30,7 +30,7 @@ fi
 ####
 
 # define arch official repo (aor) packages
-aor_packages="intellij-idea-community-edition"
+aor_packages=""
 
 # call aor script (arch official repo)
 source /root/aor.sh
@@ -39,7 +39,7 @@ source /root/aor.sh
 ####
 
 # define aur packages
-aur_packages=""
+aur_packages="intellij-idea-ce"
 
 # call aur install script (arch user repo)
 source /root/aur.sh
@@ -110,12 +110,32 @@ rm /tmp/menu_heredoc
 # container perms
 ####
 
-# create file with contets of here doc
-cat <<'EOF' > /tmp/permissions_heredoc
-echo "[info] Setting permissions on files/folders inside container..." | ts '%Y-%m-%d %H:%M:%.S'
+# define comma separated list of paths 
+install_paths="/tmp,/usr/share/themes,/home/nobody,/usr/share/novnc,/usr/share/intellijidea-ce,/usr/share/applications,/etc/xdg"
 
-chown -R "${PUID}":"${PGID}" /tmp /usr/share/themes /home/nobody /usr/share/novnc /usr/share/intellijidea-ce/ /usr/share/applications/ /etc/xdg
-chmod -R 775 /tmp /usr/share/themes /home/nobody /usr/share/novnc /usr/share/intellijidea-ce/ /usr/share/applications/ /etc/xdg
+# split comma separated string into list for install paths
+IFS=',' read -ra install_paths_list <<< "${install_paths}"
+
+# process install paths in the list
+for i in "${install_paths_list[@]}"; do
+
+	# confirm path(s) exist, if not then exit
+	if [[ ! -d "${i}" ]]; then
+		echo "[crit] Path '${i}' does not exist, exiting build process..." ; exit 1
+	fi
+
+done
+
+# convert comma separated string of install paths to space separated, required for chmod/chown processing
+install_paths=$(echo "${install_paths}" | tr ',' ' ')
+
+# create file with contents of here doc, note EOF is NOT quoted to allow us to expand current variable 'install_paths'
+# we use escaping to prevent variable expansion for PUID and PGID, as we want these expanded at runtime of init.sh
+# note - do NOT double quote variable for install_paths otherwise this will wrap space separated paths as a single string
+cat <<EOF > /tmp/permissions_heredoc
+# set permissions inside container
+chown -R "\${PUID}":"\${PGID}" ${install_paths}
+chmod -R 775 ${install_paths}
 
 EOF
 
