@@ -50,7 +50,7 @@ source /root/aur.sh
 # set intellij path selector, this changes the path used by intellij to check for a custom idea.properties file
 # the path is constructed from /home/nobody/.<idea.paths.selector value>/config/ so the idea.properties file then needs
 # to be located in /home/nobody/.config/intellij/idea.properties, note double backslash to escape end backslash
-sed -i -e 's~-Didea.paths.selector=.*~-Didea.paths.selector=config/intellij \\~g' /usr/share/intellijidea-ce/bin/idea.sh
+sed -i -e 's~-Didea.paths.selector=.*~-Didea.paths.selector=config/intellij \\~g' /opt/intellij-idea-ce/bin/idea.sh
 
 # set intellij paths for config, plugins, system and log, note the location of the idea.properties
 # file is constructed from the idea.paths.selector value, as shown above.
@@ -92,7 +92,7 @@ cp /home/nobody/favicon.ico /usr/share/novnc/
 cat <<'EOF' > /tmp/menu_heredoc
     <item label="IntelliJ">
     <action name="Execute">
-      <command>/usr/bin/idea.sh</command>
+      <command>/usr/bin/idea-ce-eap</command>
       <startupnotify>
         <enabled>yes</enabled>
       </startupnotify>
@@ -111,7 +111,7 @@ rm /tmp/menu_heredoc
 ####
 
 # define comma separated list of paths 
-install_paths="/tmp,/usr/share/themes,/home/nobody,/usr/share/novnc,/usr/share/intellijidea-ce,/usr/share/applications,/etc/xdg"
+install_paths="/tmp,/usr/share/themes,/home/nobody,/usr/share/novnc,/opt/intellij-idea-ce,/usr/share/applications,/usr/share/licenses,/etc/xdg"
 
 # split comma separated string into list for install paths
 IFS=',' read -ra install_paths_list <<< "${install_paths}"
