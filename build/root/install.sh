@@ -70,7 +70,7 @@ if [ ! -f /config/intellij/config/options/recentProjects.xml ]; then
 fi
 
 # run intellij
-/usr/bin/idea.sh
+/usr/bin/idea-ce-eap
 EOF
 
 # replace startcmd placeholder string with contents of file (here doc)
