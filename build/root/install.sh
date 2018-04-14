@@ -19,7 +19,7 @@ mv /tmp/scripts-master/shell/arch/docker/*.sh /root/
 ####
 
 # define pacman packages
-pacman_packages="git tk groovy scala kotlin groovy"
+pacman_packages="git tk groovy scala kotlin groovy gradle"
 
 # install compiled packages using pacman
 if [[ ! -z "${pacman_packages}" ]]; then
@@ -111,7 +111,7 @@ rm /tmp/menu_heredoc
 ####
 
 # define comma separated list of paths 
-install_paths="/tmp,/usr/share/themes,/home/nobody,/usr/share/novnc,/opt/intellij-idea-ce,/usr/share/applications,/usr/share/licenses,/etc/xdg"
+install_paths="/tmp,/usr/share/themes,/home/nobody,/usr/share/novnc,/opt/intellij-idea-ce,/usr/share/applications,/usr/share/licenses,/etc/xdg,/usr/share/java/gradle"
 
 # split comma separated string into list for install paths
 IFS=',' read -ra install_paths_list <<< "${install_paths}"
