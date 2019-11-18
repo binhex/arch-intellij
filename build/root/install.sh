@@ -75,7 +75,7 @@ rm /tmp/startcmd_heredoc
 ###
 
 # overwrite novnc 16x16 icon with application specific 16x16 icon (used by bookmarks and favorites)
-cp /home/nobody/novnc-16x16.png /usr/share/novnc/app/images/icons/
+cp /home/nobody/novnc-16x16.png /usr/share/webapps/novnc/app/images/icons/
 
 # config openbox
 ####
@@ -102,7 +102,7 @@ rm /tmp/menu_heredoc
 ####
 
 # define comma separated list of paths 
-install_paths="/tmp,/usr/share/themes,/home/nobody,/usr/share/novnc,/opt/intellij-idea-ce,/usr/share/applications,/usr/share/licenses,/etc/xdg,/usr/share/java/gradle"
+install_paths="/tmp,/usr/share/themes,/home/nobody,/usr/share/webapps/novnc,/opt/intellij-idea-ce,/usr/share/applications,/usr/share/licenses,/etc/xdg,/usr/share/java/gradle"
 
 # split comma separated string into list for install paths
 IFS=',' read -ra install_paths_list <<< "${install_paths}"
