@@ -30,7 +30,7 @@ fi
 ####
 
 # define aur packages
-aur_packages="intellij-idea-ce"
+aur_packages="websockify intellij-idea-ce"
 
 # call aur install script (arch user repo)
 source aur.sh
