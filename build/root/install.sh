@@ -51,31 +51,13 @@ aur_packages="intellij-idea-ce"
 # call aur install script (arch user repo)
 source aur.sh
 
-# config intellij
-####
+# config novnc
+###
 
-# set intellij path selector, this changes the path used by intellij to check for a custom idea.properties file
-# the path is constructed from /home/nobody/.<idea.paths.selector value>/config/ so the idea.properties file then needs
-# to be located in /home/nobody/.config/intellij/idea.properties, note double backslash to escape end backslash
-sed -i -e 's~-Didea.paths.selector=.*~-Didea.paths.selector=config/intellij \\~g' /opt/intellij-idea-ce/bin/idea.sh
-
-# set intellij paths for config, plugins, system and log, note the location of the idea.properties
-# file is constructed from the idea.paths.selector value, as shown above.
-mkdir -p /home/nobody/.config/intellij/config
-echo "idea.config.path=/config/intellij/config" > /home/nobody/.config/intellij/config/idea.properties
-echo "idea.plugins.path=/config/intellij/config/plugins" >> /home/nobody/.config/intellij/config/idea.properties
-echo "idea.system.path=/config/intellij/system" >> /home/nobody/.config/intellij/config/idea.properties
-echo "idea.log.path=/config/intellij/system/log" >> /home/nobody/.config/intellij/config/idea.properties
+# overwrite novnc 16x16 icon with application specific 16x16 icon (used by bookmarks and favorites)
+cp /home/nobody/novnc-16x16.png /usr/share/webapps/novnc/app/images/icons/
 
 cat <<'EOF' > /tmp/startcmd_heredoc
-# check if recent projects directory config file exists, if it doesnt we assume
-# intellij hasn't been run yet and thus set default location for future projects to
-# external volume mapping.
-if [ ! -f /config/intellij/config/options/recentProjects.xml ]; then
-	mkdir -p /config/intellij/config/options
-	cp /home/nobody/recentProjects.xml /config/intellij/config/options/recentProjects.xml
-fi
-
 # run intellij
 /usr/bin/idea-ce-eap
 EOF
@@ -86,12 +68,6 @@ sed -i '/# STARTCMD_PLACEHOLDER/{
     r /tmp/startcmd_heredoc
 }' /home/nobody/start.sh
 rm /tmp/startcmd_heredoc
-
-# config novnc
-###
-
-# overwrite novnc 16x16 icon with application specific 16x16 icon (used by bookmarks and favorites)
-cp /home/nobody/novnc-16x16.png /usr/share/webapps/novnc/app/images/icons/
 
 # config openbox
 ####
