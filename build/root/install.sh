@@ -59,7 +59,7 @@ cp /home/nobody/novnc-16x16.png /usr/share/webapps/novnc/app/images/icons/
 
 cat <<'EOF' > /tmp/startcmd_heredoc
 # run intellij
-/usr/bin/idea-ce-eap
+/usr/bin/idea-ce
 EOF
 
 # replace startcmd placeholder string with contents of file (here doc)
@@ -75,7 +75,7 @@ rm /tmp/startcmd_heredoc
 cat <<'EOF' > /tmp/menu_heredoc
     <item label="IntelliJ">
     <action name="Execute">
-      <command>/usr/bin/idea-ce-eap</command>
+      <command>/usr/bin/idea-ce</command>
       <startupnotify>
         <enabled>yes</enabled>
       </startupnotify>
