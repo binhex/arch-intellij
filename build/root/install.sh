@@ -39,7 +39,7 @@ fi
 ####
 
 # define pacman packages
-pacman_packages="git tk groovy kotlin groovy gradle"
+pacman_packages="git tk kotlin groovy gradle"
 
 # install compiled packages using pacman
 if [[ ! -z "${pacman_packages}" ]]; then
