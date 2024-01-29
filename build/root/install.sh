@@ -48,7 +48,7 @@ fi
 ####
 
 # define aur packages
-aur_packages="intellij-idea-ce"
+aur_packages="intellij-idea-community-edition-jre"
 
 # call aur install script (arch user repo)
 source aur.sh
@@ -96,7 +96,7 @@ rm /tmp/menu_heredoc
 ####
 
 # define comma separated list of paths
-install_paths="/tmp,/usr/share/themes,/home/nobody,/usr/share/webapps/novnc,/opt/intellij-idea-ce,/usr/share/applications,/usr/share/licenses,/etc/xdg,/usr/share/java/gradle"
+install_paths="/tmp,/usr/share/themes,/home/nobody,/usr/share/webapps/novnc,/usr/share/jetbrains-idea-ce,/usr/share/applications,/usr/share/licenses,/etc/xdg,/usr/share/java/gradle"
 
 # split comma separated string into list for install paths
 IFS=',' read -ra install_paths_list <<< "${install_paths}"
