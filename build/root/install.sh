@@ -37,7 +37,7 @@ mv -n /tmp/scripts-master/shell/arch/docker/*.sh /usr/local/bin/ || true
 ####
 
 # define pacman packages
-pacman_packages="git tk kotlin groovy gradle"
+pacman_packages="git tk kotlin groovy gradle intellij-idea-community-edition"
 
 # install compiled packages using pacman
 if [[ ! -z "${pacman_packages}" ]]; then
@@ -48,7 +48,7 @@ fi
 ####
 
 # define aur packages
-aur_packages="intellij-idea-community-edition-jre"
+aur_packages=""
 
 # call aur install script (arch user repo)
 source aur.sh
@@ -61,7 +61,7 @@ cp /home/nobody/novnc-16x16.png /usr/share/webapps/novnc/app/images/icons/
 
 cat <<'EOF' > /tmp/startcmd_heredoc
 # run intellij
-/usr/bin/idea-ce
+/usr/bin/idea
 EOF
 
 # replace startcmd placeholder string with contents of file (here doc)
@@ -77,7 +77,7 @@ rm /tmp/startcmd_heredoc
 cat <<'EOF' > /tmp/menu_heredoc
     <item label="IntelliJ">
     <action name="Execute">
-      <command>/usr/bin/idea-ce</command>
+      <command>/usr/bin/idea</command>
       <startupnotify>
         <enabled>yes</enabled>
       </startupnotify>
@@ -96,7 +96,7 @@ rm /tmp/menu_heredoc
 ####
 
 # define comma separated list of paths
-install_paths="/tmp,/usr/share/themes,/home/nobody,/usr/share/webapps/novnc,/usr/share/jetbrains-idea-ce,/usr/share/applications,/usr/share/licenses,/etc/xdg,/usr/share/java/gradle"
+install_paths="/tmp,/usr/share/themes,/home/nobody,/usr/share/webapps/novnc,/usr/share/idea,/usr/share/applications,/usr/share/licenses,/etc/xdg,/usr/share/java/gradle"
 
 # split comma separated string into list for install paths
 IFS=',' read -ra install_paths_list <<< "${install_paths}"
