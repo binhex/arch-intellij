@@ -23,7 +23,6 @@ Latest stable IntelliJ IDEA Community Edition release from Arch Linux.
 
 ```bash
 docker run -d \
-
     -p 5900:5900 \
     -p 6080:6080 \
     --name=<container name> \
@@ -39,9 +38,7 @@ docker run -d \
     -e UMASK=<umask for created files> \
     -e PUID=<uid for user> \
     -e PGID=<gid for user> \
-
     binhex/arch-intellij
-
 ```
 
 Please replace all user variables in the above command defined by <> with the
@@ -51,7 +48,6 @@ correct values.
 
 ```bash
 docker run -d \
-
     -p 5900:5900 \
     -p 6080:6080 \
     --name=intellij \
@@ -65,9 +61,7 @@ docker run -d \
     -e UMASK=000 \
     -e PUID=0 \
     -e PGID=0 \
-
     binhex/arch-intellij
-
 ```
 
 ## Access via web interface (noVNC)
@@ -100,7 +94,6 @@ for the user you want to run the container as:-
 
 ```bash
 id <username>
-
 ```
 
 ___
